@@ -2,29 +2,30 @@ package com.java.questions.entity;
 
 import java.util.Date;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.annotation.Generated;
 
-@Entity
+@Document(collection = "questions")
 public class Questions {
 
 	@Id
-	private Integer questionId;
+	private String questionId;
 	
 	private String question;
 	
 	private String answer;
-	
-	@CreationTimestamp
-	private Date createdDate;
 
-	public Integer getQuestionId() {
+	
+
+	public String getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(Integer questionId) {
+	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
 	}
 
@@ -44,13 +45,7 @@ public class Questions {
 		this.answer = answer;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
 
 	
 }

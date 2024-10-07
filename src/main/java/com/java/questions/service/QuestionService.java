@@ -16,13 +16,11 @@ public class QuestionService {
 	@Autowired
 	private QuestionsRepository questionRepository;
 	
-	public String addQuestion(QuestionDTO questionDTO) {
+	public String addQuestion(Questions questions) {
 		
-		Questions question= new Questions();
 		
-		BeanUtils.copyProperties(questionDTO, question);
 		
-		Questions save = questionRepository.save(question);
+		Questions save = questionRepository.save(questions);
 	
 		return "Question record successfully";
 	}
@@ -34,4 +32,13 @@ public class QuestionService {
 	
 		return questions;
 	}
+	
+	
+	public String deleteQuestion(String questionId) {
+	
+		questionRepository.deleteById(questionId);
+		return "deleted";
+		
+	}
+
 }

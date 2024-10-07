@@ -2,8 +2,6 @@ package com.java.questions.dto;
 
 import java.util.Date;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 public class QuestionDTO {
 
 	private Integer questionId;
@@ -11,8 +9,7 @@ public class QuestionDTO {
 	private String question;
 	
 	private String answer;
-	
-	@CreationTimestamp
+
 	private Date createdDate;
 
 	public Integer getQuestionId() {
