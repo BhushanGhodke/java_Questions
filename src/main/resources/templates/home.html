@@ -18,6 +18,21 @@ color:purple;
 font-size: large;
 
 }
+.container-fluid{
+  background-color: rgb(171, 204, 233);
+  font-size: 20px;
+  padding: 10px;
+  
+}
+.container{
+margin-top: 60px
+}
+.textarea{
+display: flex;
+height: auto;
+}
+
+
 </style>
 
 <script>
@@ -27,58 +42,60 @@ font-size: large;
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="container-fluid">
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="/">Welcome
-							to Java Questions</a></li>
+  <div class="container-fluid fixed-top">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
+        
+          <ul class="nav col-12 col-lg-auto  justify-content-center my-md-0 text-small">
 
-					<li class="nav-item"><a class="nav-link" href="/add">Add
-							Questions</a></li>
+   <li class="nav-item">
+        <a class="navbar-brand" href="/">Java Question & Answers</a>
+      </li>
+      
+        <li class="nav-item" style="margin-left: 20px">
+          <a class="navbar-brand"  href="/add">Add Question</a>
+        </li>
+    
+      </ul>
+   
+    </div>
+    </div>
 
 
-				</ul>
-
-
-
-			</div>
-		</div>
-	</nav>
-
-
-	<div class="container">
-
-          
-       
-		<tr th:each="q:${questions}"> 
-		  <div class="card-body">
-		
-		<!-- <p > <span th:text="${q.questionId}"></span></p> -->
-		
-		<p class="quest" > 
-		Question:  <span th:text="${q.question}"></span>
-		</p>
+	<div class="container d-flex flex-wrap">
 	
-	  <p style="margin-top: 2px ;font: bold;color: black;">
-	  Answer: <span th:text="${q.answer}"></span>
-	      
-	     <a th:href="@{'/delete/'+ ${q.questionId}}" th:text="delete" class="btn btn-warning"></a>  
+	
+		<tr th:each="q:${questions}"> 
+		 
+	        <div class="card" style="margin: 5px">
+	        
+	        <div class="card-header">
+	        
+	        	<p class="quest" > Question:  <span th:text="${q.question}"></span></p>
+	
+	        </div>
+	        
+	        <div class="card-body">
+	        
+	         <p style="margin-top: 2px ;font: bold;color: black;">
+	  Answer:
+	  <textarea class="textarea" wrap="soft" rows="2" cols="120"  th:text="${q.answer}" readonly="readonly" style="text-align: justify;" ></textarea>
+	   	      
+<!-- 	     <a th:href="@{'/delete/'+ ${q.questionId}}" th:text="delete" class="btn btn-warning"></a>  -->	     
+	      <a th:href="@{'/update/'+ ${q.questionId}}" th:text="update" class="btn btn-warning"></a>  
 	  
 	  </p>
-
-      
-         </div>
-      
+	        </div>
+	        
+	        </div>
+		
+	
+	 
+     
 		</tr>
 
+  </div>
 
-
-
-
-
-	</div>
 
 
 	<script

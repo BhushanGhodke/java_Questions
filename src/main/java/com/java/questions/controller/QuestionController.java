@@ -41,7 +41,7 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/delete/{questionId}")
-	public String deleteQuestions(@PathVariable String questionId, Model model) {
+	public String deleteQuestions(@PathVariable Integer questionId, Model model) {
 		
 		String status = questionService.deleteQuestion(questionId);
 	
@@ -49,5 +49,30 @@ public class QuestionController {
 		
 		return "redirect:/";
 		
+	}
+	
+	@GetMapping("/update/{questionId}")
+	public String getQuestionForUpdate(@PathVariable Integer questionId, Model model) {
+		
+		Questions question = questionService.getQuestionById(questionId);
+		
+		model.addAttribute("question", question);
+		
+		return "update";
+	}
+	
+	
+	@PostMapping("/update/{questionId}")
+	public String updateQuestion(@ModelAttribute("update") Questions question) {
+		
+		Boolean status = questionService.updateQuestionById(question);
+		
+		if(status) {
+			return "redirect:/";		
+		}
+		else {
+			return "update";
+		}
+	
 	}
 }

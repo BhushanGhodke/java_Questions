@@ -28,6 +28,12 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" href="/">Welcome
 							to Java Questions</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="#">Add
+							Questions</a></li>
+
+
+
 				</ul>
 
 
@@ -40,18 +46,17 @@
 	<div class="container">
 
 
-		<div class="card" style="margin-top: 20px">
+		<div class="card" sty>
 
 			<div class="card-header">
 
-				<h3 style="text-align: center;">Add Question</h3>
+				<h3 style="text-align: center;">Update Question</h3>
 
 			</div>
 
 			<div class="card-body">
-
-
-				<form id="form" th:action="@{/add}" th:object="${entry}"
+			
+				<form id="form" th:action="@{'/update/'+ ${question.questionId}}" th:object="${question}"
 					method="post">
 
 					<div class="mb-3">

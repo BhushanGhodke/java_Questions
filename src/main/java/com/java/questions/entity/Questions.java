@@ -1,31 +1,32 @@
 package com.java.questions.entity;
 
-import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.FieldType;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import jakarta.annotation.Generated;
+@Entity
 
-@Document(collection = "questions")
 public class Questions {
 
 	@Id
-	private String questionId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer questionId;
 	
 	private String question;
 	
+	@Column(length = 100000)
 	private String answer;
 
 	
 
-	public String getQuestionId() {
+	public Integer getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(String questionId) {
+	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
 	}
 

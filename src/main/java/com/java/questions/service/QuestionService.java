@@ -2,11 +2,11 @@ package com.java.questions.service;
 
 import java.util.List;
 
+import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.questions.dto.QuestionDTO;
 import com.java.questions.entity.Questions;
 import com.java.questions.repo.QuestionsRepository;
 
@@ -18,9 +18,7 @@ public class QuestionService {
 	
 	public String addQuestion(Questions questions) {
 		
-		
-		
-		Questions save = questionRepository.save(questions);
+	questionRepository.save(questions);
 	
 		return "Question record successfully";
 	}
@@ -34,11 +32,30 @@ public class QuestionService {
 	}
 	
 	
-	public String deleteQuestion(String questionId) {
+	public String deleteQuestion(Integer questionId) {
 	
 		questionRepository.deleteById(questionId);
 		return "deleted";
 		
+	}
+	
+	
+	public Questions getQuestionById(Integer questionId) {
+		
+		Questions question=questionRepository.findById(questionId).orElseThrow();
+	
+		return question;
+	}
+
+	
+	public Boolean updateQuestionById(Questions question) {
+		
+		Questions quest=questionRepository.findById(question.getQuestionId()).orElseThrow();
+	
+		BeanUtils.copyProperties(question, quest);
+	
+		 Questions save = questionRepository.save(quest);
+		return save.getQuestionId()!=null;
 	}
 
 }
